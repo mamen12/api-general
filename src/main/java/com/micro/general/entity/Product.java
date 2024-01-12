@@ -14,9 +14,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="mt_product", schema ="general")
 public class Product implements Serializable{
-	
+	  
 	/**
-	 * 
+	 * syahrul added 12-01-2024
 	 */
 	private static final long serialVersionUID = 1L;
 
