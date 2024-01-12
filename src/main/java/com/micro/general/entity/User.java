@@ -1,6 +1,7 @@
 package com.micro.general.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.hibernate.annotations.UuidGenerator;
 
@@ -9,8 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "mt_user", schema ="general")
+@Entity()
+@Table(name = "mt_user", schema = "general")
 public class User implements Serializable {
 	  
 	/**
@@ -27,6 +28,15 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String address;
+	
+	private Integer isActive;
+	
+	@Column(name = "created_at")
+	private Date createdAt;
+	
+	@Column(name = "updated_at")
+	private Date updateAt;
+	
 	public String getIdUser() {
 		return idUser;
 	}
@@ -57,7 +67,23 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+	public Integer getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdateAt() {
+		return updateAt;
+	}
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
 	
 }

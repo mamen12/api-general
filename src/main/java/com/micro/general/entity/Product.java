@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="mt_product", schema ="general")
+@Table(name="mt_product", schema = "general")
 public class Product implements Serializable{
 	  
 	/**
