@@ -92,6 +92,13 @@
 		    <version>4.13.2</version>
 		    <scope>test</scope>
 		</dependency>
+		
+		<!-- 		import common-beans -->
+		<dependency>
+			<groupId>com.commons</groupId>
+			<artifactId>beans</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

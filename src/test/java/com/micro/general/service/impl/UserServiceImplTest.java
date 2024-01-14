@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.commons.beans.beans.UserRequest;
+import com.commons.beans.beans.UserResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.micro.general.beans.UserRequest;
-import com.micro.general.beans.UserResponse;
 import com.micro.general.entity.User;
 import com.micro.general.repository.UserRepository;
 import com.micro.general.service.IUserService;

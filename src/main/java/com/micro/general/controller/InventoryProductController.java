@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.micro.general.beans.Response;
-import com.micro.general.constant.ApiResponse;
+import com.commons.beans.beans.InventoryRequest;
+import com.commons.beans.beans.InventoryResponse;
+import com.commons.beans.beans.Request;
+import com.commons.beans.beans.Response;
+import com.commons.beans.constant.ApiResponse;
 import com.micro.general.service.IInvetoryService;
-import com.micro.general.beans.InventoryRequest;
-import com.micro.general.beans.InventoryResponse;
-import com.micro.general.beans.Request;
 
 @RestController
 @RequestMapping("/inventory")

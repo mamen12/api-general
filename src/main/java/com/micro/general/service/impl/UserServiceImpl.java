@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import com.micro.general.beans.UserRequest;
-import com.micro.general.beans.UserResponse;
-import com.micro.general.constant.AppConstants;
+import com.commons.beans.beans.UserRequest;
+import com.commons.beans.beans.UserResponse;
+import com.commons.beans.constant.AppConstants;
 import com.micro.general.entity.User;
 import com.micro.general.exception.ApiException;
 import com.micro.general.repository.UserRepository;

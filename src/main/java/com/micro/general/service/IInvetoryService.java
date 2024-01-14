@@ -2,9 +2,9 @@ package com.micro.general.service;
 
 import java.util.List;
 
-import com.micro.general.beans.InventoryResponse;
+import com.commons.beans.beans.InventoryRequest;
+import com.commons.beans.beans.InventoryResponse;
 import com.micro.general.exception.ApiException;
-import com.micro.general.beans.InventoryRequest;
 
 public interface IInvetoryService {
 	

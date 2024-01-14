@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.micro.general.beans.Request;
-import com.micro.general.beans.Response;
-import com.micro.general.beans.UserRequest;
-import com.micro.general.beans.UserResponse;
-import com.micro.general.constant.ApiResponse;
+import com.commons.beans.beans.Request;
+import com.commons.beans.beans.Response;
+import com.commons.beans.beans.UserRequest;
+import com.commons.beans.beans.UserResponse;
+import com.commons.beans.constant.ApiResponse;
 import com.micro.general.entity.User;
 import com.micro.general.service.IUserService;
 

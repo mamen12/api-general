@@ -12,9 +12,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.micro.general.beans.InventoryResponse;
-import com.micro.general.constant.AppConstants;
-import com.micro.general.beans.InventoryRequest;
+import com.commons.beans.beans.InventoryRequest;
+import com.commons.beans.beans.InventoryResponse;
+import com.commons.beans.constant.AppConstants;
 import com.micro.general.entity.Product;
 import com.micro.general.exception.ApiException;
 import com.micro.general.repository.InventoryRepository;

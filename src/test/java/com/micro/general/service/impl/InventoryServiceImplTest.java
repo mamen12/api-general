@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.commons.beans.beans.InventoryRequest;
+import com.commons.beans.beans.InventoryResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.micro.general.beans.InventoryRequest;
-import com.micro.general.beans.InventoryResponse;
 import com.micro.general.entity.Product;
 import com.micro.general.repository.InventoryRepository;
 import com.micro.general.service.IInvetoryService;
@@ -86,7 +86,7 @@ public class InventoryServiceImplTest {
 	@Test
 	public void updateProductInvetory() {
 		InventoryRequest rq = new InventoryRequest();
-		rq.setIdProduct("d45d40a2-a888-410e-9b3e-69a5bd83f0be");
+		rq.setIdProduct("bbf3241c-ee9c-43e1-9852-4db451151876");
 		rq.setPrice(new BigDecimal(90000));
 		rq.setQuantity(10000);
 		try {
@@ -94,6 +94,8 @@ public class InventoryServiceImplTest {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		Product product = invenRepo.findById("bbf3241c-ee9c-43e1-9852-4db451151876").orElseThrow();
+		assertEquals(product.getQty(), rq.getQuantity());
 	}
 	
 	@Test
@@ -103,7 +105,7 @@ public class InventoryServiceImplTest {
 		rq.setIdProduct("bbf3241c-ee9c-43e1-9852-4db451151876");
 		try {
 			InventoryResponse rs = invenService.getProductDetail(rq.getIdProduct());
-			assertEquals(rs.getIdInvent(), rq.getIdProduct());
+			assertEquals(10000, rs.getQuantity());
 			logger.info(mapper.writeValueAsString(rs));
 		} catch (Exception e) {
 			logger.error(e.getMessage());
