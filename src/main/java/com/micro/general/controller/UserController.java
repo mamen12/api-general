@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,7 +61,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/detail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Response<UserResponse> detailUser(@RequestBody Request<UserRequest> rq){
+    public Object detailUser(@RequestBody Request<UserRequest> rq){
     	Response<UserResponse> rs = new Response<UserResponse>();
     	UserRequest payload = rq.getRequestPayload();
 		UserResponse user = userService.getUserByEmail(payload.getEmail());
@@ -70,6 +71,10 @@ public class UserController {
 		}else {
 			rs.setStatusResponse(ApiResponse.DATA_NOT_FOUND);
 		}
-    	return rs;
+		if (ObjectUtils.isEmpty(rq.getRequestHeader()) || ObjectUtils.isEmpty(rq.getRequestHeader().getChanel())) {
+			return rs;
+		}else {
+			return rs.getData();
+		} 
     }
 }

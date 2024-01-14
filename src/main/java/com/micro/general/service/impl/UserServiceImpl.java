@@ -18,6 +18,8 @@ import com.micro.general.exception.ApiException;
 import com.micro.general.repository.UserRepository;
 import com.micro.general.service.IUserService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserServiceImpl implements IUserService{
 
@@ -63,6 +65,7 @@ public class UserServiceImpl implements IUserService{
 		userRepository.saveAll(users);
 	}
 
+	@Transactional
 	@Override
 	public UserResponse getUserByEmail(String email) {
 		UserResponse rs = null;

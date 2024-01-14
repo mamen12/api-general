@@ -50,7 +50,11 @@ public class InventoryServiceImpl implements IInvetoryService{
 	@Override
 	public void updateInvetoryProduct(InventoryRequest rqPayload) throws ApiException {
 		try {
-			invenRepo.updatePriceQtyProduct(rqPayload.getPrice(), rqPayload.getQuantity(), new Date(), rqPayload.getIdProduct());
+			Product product = invenRepo.findById(rqPayload.getIdProduct()).orElseThrow();
+			invenRepo.updatePriceQtyProduct(
+					rqPayload.getPrice() != null ? rqPayload.getPrice() :product.getPrice() ,
+					rqPayload.getQuantity() != null ? rqPayload.getQuantity(): product.getQty(),
+				new Date(), rqPayload.getIdProduct());
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			throw new ApiException(AppConstants.UPDATE_FAILED);
@@ -101,6 +105,7 @@ public class InventoryServiceImpl implements IInvetoryService{
 		return rs; 
 	}
 
+	@Transactional
 	@Override
 	public InventoryResponse getQtyProductById(String idProduct) {
 		InventoryResponse rs = null;
