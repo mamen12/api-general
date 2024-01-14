@@ -2,26 +2,18 @@ package com.micro.general.service.impl;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import org.apache.catalina.mapper.Mapper;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.micro.general.beans.BaseReponse;
 import com.micro.general.beans.UserRequest;
 import com.micro.general.beans.UserResponse;
-import com.micro.general.entity.User;
 import com.micro.general.repository.UserRepository;
 import com.micro.general.service.IUserService;
 
@@ -35,8 +27,8 @@ public class UserServiceImplTest {
 	@Autowired
 	private UserRepository userRepo;
 	
-	@BeforeEach
-	void setup() {
+	@Test
+	public void insertAll() {
 //		List<User> users = new ArrayList<User>();
 //		for (int i = 1; i < 24; i++) {
 //			User user = new User();

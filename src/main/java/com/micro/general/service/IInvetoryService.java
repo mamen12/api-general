@@ -3,15 +3,18 @@ package com.micro.general.service;
 import java.util.List;
 
 import com.micro.general.beans.InventoryResponse;
-import com.micro.general.beans.InvetoryRequest;
+import com.micro.general.exception.ApiException;
+import com.micro.general.beans.InventoryRequest;
 
 public interface IInvetoryService {
 	
-	public void saveInvetoryProduct(InvetoryRequest product);
+	public void saveInvetoryProduct(InventoryRequest product) throws ApiException;
 	
-	public void updateInvetoryProduct(InvetoryRequest product);
+	public void updateInvetoryProduct(InventoryRequest product);
 	
-	public List<InventoryResponse> getListProduct(InvetoryRequest payload);
+	public List<InventoryResponse> getListProduct(InventoryRequest payload);
 	
 	public InventoryResponse getProductDetail(String idProduct);
+	
+	public InventoryResponse getQtyProductById(String idProduct);
 }

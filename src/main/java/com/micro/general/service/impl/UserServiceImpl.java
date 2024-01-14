@@ -63,7 +63,7 @@ public class UserServiceImpl implements IUserService{
 	public UserResponse getUserById(String id) {
 		UserResponse rs = null;
 		if (userRepository.existsById(id)) {
-			User user = userRepository.getReferenceById(id);
+			User user = userRepository.findById(id).orElseThrow();
 			rs = new UserResponse();
 			rs.setEmail(user.getEmail());
 			rs.setIdUser(user.getIdUser());

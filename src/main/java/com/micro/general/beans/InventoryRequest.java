@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class InvetoryRequest extends BaseRequest{
+public class InventoryRequest extends BaseRequest{
 	
 	@JsonProperty(value = "id_product")
-	private String id_product;
+	private String idProduct;
 	
 	@JsonProperty(value = "name_product")
 	private String name;
@@ -24,17 +24,12 @@ public class InvetoryRequest extends BaseRequest{
 	@JsonProperty(value = "desc_product")
 	private String desc;
 	
-	@JsonProperty(value = "page")
-	private String page;
-	
-	
-
-	public String getId_product() {
-		return id_product;
+	public String getIdProduct() {
+		return idProduct;
 	}
 
-	public void setId_product(String id_product) {
-		this.id_product = id_product;
+	public void setIdProduct(String idProduct) {
+		this.idProduct = idProduct;
 	}
 
 	public String getName() {
