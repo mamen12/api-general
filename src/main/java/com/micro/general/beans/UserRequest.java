@@ -18,6 +18,9 @@ public class UserRequest extends BaseRequest{
 	
 	@JsonProperty(value = "is_active")
 	private Integer isActive;
+	
+	@JsonProperty(value = "address")
+	private String address;
 
 	public String getName() {
 		return name;
@@ -50,7 +53,14 @@ public class UserRequest extends BaseRequest{
 	public void setIsActive(Integer isActive) {
 		this.isActive = isActive;
 	}
-	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	
 	
 }

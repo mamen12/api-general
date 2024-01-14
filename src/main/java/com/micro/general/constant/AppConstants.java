@@ -9,6 +9,8 @@ public class AppConstants {
 	public static final String PRODUCT_NOT_FOUND = "Product Not Found in Database";
 	public static final String PRODUCT_EMPTY_IN_INVENTORY = "Sorry, Stock Product Empty";
 	
-	
-	public static final String SAVED_FAILED = "Failed Saved";
+	public static final String SAVED_FAILED = "Save Failed";
+	public static final String UPDATE_FAILED = "Update Failed";
+
+	public static final String SUCCESS = "Sucess";
 }

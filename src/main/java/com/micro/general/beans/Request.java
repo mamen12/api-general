@@ -1,13 +1,20 @@
 package com.micro.general.beans;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(Include.NON_NULL)
 public class Request<T> {
 	
+	@JsonProperty(value = "is_admin")
 	private String isAdmin;
 	
-	private RequsetHeader rqHeader;
+	@JsonProperty(value = "request_header")
+	private RequsetHeader requestHeader;
 	
-	private T rqPayload;
+	@JsonProperty(value = "request_payload")
+	private T requestPayload;
 
 	public String getIsAdmin() {
 		return isAdmin;
@@ -17,19 +24,21 @@ public class Request<T> {
 		this.isAdmin = isAdmin;
 	}
 
-	public RequsetHeader getRqHeader() {
-		return rqHeader;
+	public RequsetHeader getRequestHeader() {
+		return requestHeader;
 	}
 
-	public void setRqHeader(RequsetHeader rqHeader) {
-		this.rqHeader = rqHeader;
+	public void setRequestHeader(RequsetHeader requestHeader) {
+		this.requestHeader = requestHeader;
 	}
 
-	public T getRqPayload() {
-		return rqPayload;
+	public T getRequestPayload() {
+		return requestPayload;
 	}
 
-	public void setRqPayload(T rqPayload) {
-		this.rqPayload = rqPayload;
+	public void setRequestPayload(T requestPayload) {
+		this.requestPayload = requestPayload;
 	}
+
+	
 }

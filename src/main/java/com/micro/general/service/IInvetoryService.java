@@ -10,7 +10,7 @@ public interface IInvetoryService {
 	
 	public void saveInvetoryProduct(InventoryRequest product) throws ApiException;
 	
-	public void updateInvetoryProduct(InventoryRequest product);
+	public void updateInvetoryProduct(InventoryRequest product) throws ApiException;
 	
 	public List<InventoryResponse> getListProduct(InventoryRequest payload);
 	

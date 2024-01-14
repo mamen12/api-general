@@ -12,6 +12,6 @@ public interface IUserService {
 	public void insertUser(User user) throws ApiException;
 	public List<UserResponse> getListUsers(UserRequest payload); 
 	public void inserAllUsers(List<User> users);
-	public UserResponse getUserById(String id);
+	public UserResponse getUserByEmail(String id);
 	
 }

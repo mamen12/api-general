@@ -46,12 +46,16 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void insertUser(User user) throws ApiException {
-		if (userRepository.findUserByEmail(user.getEmail()) > 0) {
-			throw new ApiException(AppConstants.USER_ALREADY_EXISTS);
+		try {
+			if (userRepository.countEmailUser(user.getEmail()) > 0) {
+				throw new ApiException(AppConstants.USER_ALREADY_EXISTS);
+			}
+			user.setIdUser(UUID.randomUUID().toString());
+			user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+			userRepository.save(user);
+		} catch (Exception e) {
+			throw new ApiException(AppConstants.SAVED_FAILED, e);
 		}
-		user.setIdUser(UUID.randomUUID().toString());
-		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-		userRepository.save(user);
 	}
 
 	@Override
@@ -60,14 +64,18 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public UserResponse getUserById(String id) {
+	public UserResponse getUserByEmail(String email) {
 		UserResponse rs = null;
-		if (userRepository.existsById(id)) {
-			User user = userRepository.findById(id).orElseThrow();
-			rs = new UserResponse();
-			rs.setEmail(user.getEmail());
-			rs.setIdUser(user.getIdUser());
-			rs.setName(user.getName());
+		try {
+			if (userRepository.countEmailUser(email).equals(1)) {
+				User user = userRepository.findUserByEmail(email);
+				rs = new UserResponse();
+				rs.setEmail(user.getEmail());
+				rs.setIdUser(user.getIdUser());
+				rs.setName(user.getName());
+			}
+		} catch (Exception e) {
+			throw e;
 		}
 		return rs;
 	}

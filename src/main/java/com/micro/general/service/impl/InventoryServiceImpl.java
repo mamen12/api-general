@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,8 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class InventoryServiceImpl implements IInvetoryService{
+	
+	Logger logger = LoggerFactory.getLogger(InventoryServiceImpl.class);
 
 	@Autowired
 	private InventoryRepository invenRepo;
@@ -37,51 +41,62 @@ public class InventoryServiceImpl implements IInvetoryService{
 		try {
 			invenRepo.save(product);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			throw new ApiException(AppConstants.SAVED_FAILED);
 		}
 	}
 
 	@Transactional
 	@Override
-	public void updateInvetoryProduct(InventoryRequest rqPayload) {
+	public void updateInvetoryProduct(InventoryRequest rqPayload) throws ApiException {
 		try {
 			invenRepo.updatePriceQtyProduct(rqPayload.getPrice(), rqPayload.getQuantity(), new Date(), rqPayload.getIdProduct());
 		} catch (Exception e) {
-			throw e;
+			logger.error(e.getMessage());
+			throw new ApiException(AppConstants.UPDATE_FAILED);
 		}
 	}
 
 	@Override
 	public List<InventoryResponse> getListProduct(InventoryRequest rqPayload) {
 		List<InventoryResponse> rs = null;
-		Pageable pagination = PageRequest.of(rqPayload.getPage() - 1, rqPayload.getSize());
-		Page<Product>products = invenRepo.findAll(pagination);
-		if (products.getSize() > 0) {
-			rs = new ArrayList<InventoryResponse>();
-			for (Product prd : products) {
-				InventoryResponse product = new InventoryResponse();
-				product.setIdInvent(prd.getIdProduct());
-				product.setDesc(prd.getDesciption());
-				product.setName(prd.getName());
-				product.setQuantity(prd.getQty());
-				product.setPrice(prd.getPrice());
-				rs.add(product);
+		try {
+			Pageable pagination = PageRequest.of(rqPayload.getPage() - 1, rqPayload.getSize());
+			Page<Product>products = invenRepo.findAll(pagination);
+			if (products.getSize() > 0) {
+				rs = new ArrayList<InventoryResponse>();
+				for (Product prd : products) {
+					InventoryResponse product = new InventoryResponse();
+					product.setIdInvent(prd.getIdProduct());
+					product.setDesc(prd.getDesciption());
+					product.setName(prd.getName());
+					product.setQuantity(prd.getQty());
+					product.setPrice(prd.getPrice());
+					rs.add(product);
+				}
 			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
-		return rs;	}
+		
+		return rs;	
+	}
 
 	@Transactional
 	@Override
 	public InventoryResponse getProductDetail(String idProduct) {
 		InventoryResponse rs = null;
-		if(invenRepo.existsById(idProduct)) {
-			Product product = invenRepo.findById(idProduct).orElseThrow();
-			rs = new InventoryResponse();
-			rs.setIdInvent(product.getIdProduct());
-			rs.setName(product.getName());
-			rs.setPrice(product.getPrice());
-			rs.setDesc(product.getDesciption());
-			rs.setQuantity(product.getQty());
+		try {
+			if(invenRepo.existsById(idProduct)) {
+				Product product = invenRepo.findById(idProduct).orElseThrow();
+				rs = new InventoryResponse();
+				rs.setIdInvent(product.getIdProduct());
+				rs.setName(product.getName());
+				rs.setPrice(product.getPrice());
+				rs.setDesc(product.getDesciption());
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
 		return rs; 
 	}
@@ -89,10 +104,14 @@ public class InventoryServiceImpl implements IInvetoryService{
 	@Override
 	public InventoryResponse getQtyProductById(String idProduct) {
 		InventoryResponse rs = null;
-		if(invenRepo.existsById(idProduct)) {
-			Integer qtyProductInven =  invenRepo.getQtyProductById(idProduct);
-			rs = new InventoryResponse();
-			rs.setQuantity(qtyProductInven);
+		try {
+			if(invenRepo.existsById(idProduct)) {
+				Integer qtyProductInven =  invenRepo.getQtyProductById(idProduct);
+				rs = new InventoryResponse();
+				rs.setQuantity(qtyProductInven);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
 		return rs;
 	}

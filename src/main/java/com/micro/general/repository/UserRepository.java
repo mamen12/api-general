@@ -12,7 +12,10 @@ public interface UserRepository extends JpaRepository<User, String>{
 	// saya codding pake sts 4 jadi gada auto complete untuk jpanya, mau gamau saya pakai @query
 	
 	@Query("SELECT COUNT(u) FROM User u WHERE u.email=?1")
-	public Integer findUserByEmail(String email);
+	public Integer countEmailUser(String email);
+	
+	@Query("SELECT u FROM User u Where u.email=?1")
+	public User findUserByEmail(String email);
 	
 	
 }

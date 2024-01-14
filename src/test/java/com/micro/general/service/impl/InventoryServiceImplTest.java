@@ -74,7 +74,7 @@ public class InventoryServiceImplTest {
 	
 	@Test
 	public void getListInventoryProduct() {
-//		saveAllProduct();
+		saveAllProduct();
 		InventoryRequest rq = new InventoryRequest();
 		rq.setPage(1);
 		rq.setSize(10);
